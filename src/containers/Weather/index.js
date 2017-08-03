@@ -2,10 +2,10 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchForecast } from '../../actions/index';
 import WeatherForecast from '../../components/WeatherForecast/WeatherForecast';
-import Loading from '../../components/Loading/Loading';
+import Loading from '../../components/Loading';
+import Selector from '../../components/Selector';
 
 class Weather extends React.Component {
-
 	componentWillUpdate(nextProps, nextState) {
 		if (this.props.location !== nextProps.location) {
 			const { latitude, longitude } = nextProps.location.data;
@@ -18,8 +18,8 @@ class Weather extends React.Component {
 	}
 
 	render() {
-		const { isFetching, weather } = this.props;
-		console.log('weathe', weather);
+		const { isFetching, weather, onfetchForecast } = this.props;
+		console.log('weather', weather);
 
 		if (weather.error) {
 			return (
@@ -36,6 +36,7 @@ class Weather extends React.Component {
 			<div className="Weather">
 				<h2 className="WeatherCity">{weather.forecast.city.name}</h2>
 				<h2>{weather.forecast.list[0].temp}<sup>&#8451;</sup></h2>
+				<Selector onSelect={(v) => { console.log(v); return this.updateWeather(v)}} />
 				<WeatherForecast forecast={weather.forecast.list} type="week" />
 			</div>
 		);
