@@ -1,0 +1,13 @@
+@import "../../components/abby/abby";
+
+@import "../../containers/Search/styles.scss";
+
+.WeatherForecast {
+	height: 300px;
+	width: 100%;
+	padding: 26px;
+
+	svg {
+		overflow: visible;
+	}
+}
