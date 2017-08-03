@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch';
 // import { key as APP_ID } from '../../config';
 
-const APP_ID = '9ccb20b5e2fd3d34779cb287dcc4e336';
+const APP_ID = 'f61119db4f9f092afb4ddfd327abf2ba';
 
 const BASE_URL = 'http://api.openweathermap.org/data/2.5';
 
