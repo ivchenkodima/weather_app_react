@@ -18,8 +18,8 @@ class Weather extends React.Component {
 	}
 
 	render() {
-		const { isFetching, weather, onfetchForecast } = this.props;
-		console.log('weather', weather);
+		const { isFetching, weather, location: { data }, onfetchForecast } = this.props;
+		console.log('weather', weather, location);
 
 		if (weather.error) {
 			return (
@@ -36,7 +36,9 @@ class Weather extends React.Component {
 			<div className="Weather">
 				<h2 className="WeatherCity">{weather.forecast.city.name}</h2>
 				<h2>{weather.forecast.list[0].temp}<sup>&#8451;</sup></h2>
-				<Selector onSelect={(v) => { console.log(v); return this.updateWeather(v)}} />
+				<Selector onSelect={v =>
+					this.updateWeather(`lat=${data.latitude}&lon=${data.longitude}&cnt=${v}`)}
+				/>
 				<WeatherForecast forecast={weather.forecast.list} type="week" />
 			</div>
 		);
